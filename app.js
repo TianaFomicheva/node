@@ -6,13 +6,11 @@ const  app = express(),
 
 
 app.use(router);
-watcher(true)
+
 
 
 
   app.listen(PORT, ()=> {
     console.log('Express started...');
-
-    //запуск вотчера
-
+      watcher(true)
   });
