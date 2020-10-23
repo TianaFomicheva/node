@@ -1,11 +1,18 @@
-const  express = require('express'),
-      app = express(),
-      Routes = require('./routes/index'),
-      PORT = process.env.PORT || 3000;
+import  express from 'express'
+import {router} from './routes/index.js'
+ import watcher from './watcher.js'
+const  app = express(),
+       PORT = process.env.PORT || 3000;
 
 
-app.use(express.static(__dirname + '/public'));
-app.use(Routes);
+app.use(router);
+watcher(true)
 
 
-  app.listen(PORT, ()=> console.log('Express started...'));
+
+  app.listen(PORT, ()=> {
+    console.log('Express started...');
+
+    //запуск вотчера
+
+  });
