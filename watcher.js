@@ -29,11 +29,9 @@ async function getLastState() {
 
 
 function getArray(json_tree){
-console.log(1)
     let state = [];
-    console.log(json_tree)
     let parse = JSON.parse(json_tree)
-    // console.log(parse);
+
     Object.keys(parse).forEach(function(key){
         if(key == 'children') {
             Object.values(parse[key]).forEach(function (value) {
