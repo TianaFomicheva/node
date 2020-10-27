@@ -1,16 +1,10 @@
-import  express from 'express'
-import {router} from './routes/index.js'
- import watcher from './watcher.js'
-const  app = express(),
-       PORT = process.env.PORT || 3000;
+import express from 'express'
+import watcher from './watcher.js'
 
+const app = express(),
+    PORT = process.env.PORT || 3000;
 
-app.use(router);
-
-
-
-
-  app.listen(PORT, ()=> {
+app.listen(PORT, () => {
     console.log('Express started...');
-      watcher(true)
-  });
+    watcher(true)
+});
