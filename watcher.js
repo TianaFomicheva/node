@@ -8,6 +8,9 @@ let prevstate, newstate, checkstate, action
 
 export default function (onstart = false) {
     prevstate = getState(directory)
+
+
+
     checkstate = async function getLastState() {
         try {
             const result = await db.query('SELECT state FROM dirtree_states ORDER BY id  DESC LIMIT 1')
@@ -20,9 +23,7 @@ export default function (onstart = false) {
         }
     }
 
-    if (onstart) {
-        checkstate()
-    }
+
 
     function parsing(parse, state = []) {
         Object.keys(parse).forEach(function (key) {
@@ -35,14 +36,10 @@ export default function (onstart = false) {
             }
         })
         return state;
-
     }
 
 
-    let watcher = chokidar.watch(directory, {
-        persistent: true,
-        alwaysState: true
-    })
+
 
     function extract(x, arr = []) {
         if (typeof (x) == 'object') {
@@ -75,10 +72,7 @@ export default function (onstart = false) {
     }
 
 
-    watcher.on('all', () => {
-        newstate = getState(directory);
-        checkAndInsert(prevstate, newstate);
-    });
+
 
     async function insertState(state, action) {
         try {
@@ -118,6 +112,17 @@ export default function (onstart = false) {
             prevstate = newstate
         }
     }
+    if (onstart) {
+        checkstate()
+    }
+    let watcher = chokidar.watch(directory, {
+        persistent: true,
+        alwaysState: true
+    })
+    watcher.on('all', () => {
+        newstate = getState(directory);
+        checkAndInsert(prevstate, newstate);
+    });
 
 }
 
