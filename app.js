@@ -1,5 +1,5 @@
-import express from 'express'
-import watcher from './watcher.js'
+import express from 'express';
+import watcher from './watcher';
 
 const app = express(),
     PORT = process.env.PORT || 3000;

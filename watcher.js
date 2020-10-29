@@ -14,7 +14,7 @@ export default function (onstart = false) {
     checkstate = async function getLastState() {
         try {
             const result = await db.query('SELECT state FROM dirtree_states ORDER BY id  DESC LIMIT 1')
-            await new Promise((res, rej) => res(JSON.parse(result[0]["state"]))).then(data => parsing(data))
+            await new Promise((res) => res(JSON.parse(result[0]["state"]))).then(data => parsing(data))
                 .then(data => {
                     checkAndInsert(data, prevstate)
                 })
@@ -86,7 +86,8 @@ export default function (onstart = false) {
                     console.log('ERROR:', error);
                 });
 
-        } catch {
+        }
+        catch(e) {
             console.log('error while insert')
         }
     }

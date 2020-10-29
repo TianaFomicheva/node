@@ -9,7 +9,7 @@
     "babel-node": "babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build",
-	"eslint": "eslint --ignore-path .gitignore ."
+    "eslint": "eslint"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

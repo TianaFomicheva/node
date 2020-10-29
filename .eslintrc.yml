@@ -1,9 +1,13 @@
-plugins:
-  - babel
 env:
-  node: true
-parser: babel-eslint
-extends:
-  - 'airbnb-base'
-rules:
-  no-console: 0
+   "node": true
+   "commonjs": true
+  
+extends: 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 9
+  sourceType: module
+  
+rules: {}
+
+globals:
+  Promise: true
